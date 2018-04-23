@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { getCards } from "../../actions";
-import Cards from "../../Cards/Cards";
+import Cards from "../../components/Cards/Cards";
 
 class Home extends Component {
   componentWillMount() {

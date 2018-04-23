@@ -9,7 +9,7 @@ import {
   addToAccepted,
   addToRejected,
   getCards
-} from "../actions";
+} from "../../actions";
 
 class Cards extends Component {
   onCardSwipe = (card, like) => {

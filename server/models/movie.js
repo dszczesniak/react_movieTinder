@@ -5,7 +5,7 @@ const movieSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    summary:{
+    description:{
         type:String,
         required:true
     },
@@ -15,7 +15,7 @@ const movieSchema = mongoose.Schema({
         min:0,
         max:10
     },
-    imageUrl:{
+    picture:{
         type:String,
         default:'n/a'
     }

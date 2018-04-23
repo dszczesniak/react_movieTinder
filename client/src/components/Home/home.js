@@ -1,27 +1,29 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import style from './home.css';
-import Card from '../card';
-import Cards from '../cards';
+import { getCards } from "../../actions";
+import Cards from "../../Cards/Cards";
 
 class Home extends Component {
+  componentWillMount() {
+    this.props.dispatch(getCards());
+  }
 
-    render() {
-        return (
-            <div>
-                <Cards height='350' width='297'/>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <Cards height="350" width="297" />
+      </div>
+    );
+  }
 }
-
 
 function mapStateToProps(state) {
-    return {
-        cards: state.cards,
-        actualCard: state.actualCard,
-        showDesc: state.showDesc
-    }
+  return {
+    cards: state.cards,
+    showDesc: state.showDesc,
+    accepted: state.accepted,
+    rejected: state.rejected
+  };
 }
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(Home);

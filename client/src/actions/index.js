@@ -1,31 +1,47 @@
-export function setCards() {
-    return {
-        type: 'SET_CARDS',
-        payload: [{
-                    title:"Dog in the Garden",
-                    rating:6.8,
-                    picture: "dogo"
-                },
-                {
-                    title:"Dragon Ball Z",
-                    rating:9.8,
-                    picture: "dragon"
-                }],
-        showDesc: false
-    }
+import axios from "axios";
+
+export function getCards(limit = 3, start = 0, cards = "") {
+  const request = axios
+    .get(`/api/recommendations?limit=${limit}&skip=${start}`)
+    .then(response => {
+      if (cards) {
+        return [...cards, ...response.data];
+      } else {
+        return response.data;
+      }
+    });
+
+  return {
+    type: "SET_CARDS",
+    payload: request
+  };
 }
 
-export function getActualCard(card) {
-    return {
-        type: 'GET_ACTUAL_CARD',
-        payload: card[0]
-                
-    }
+export function showDescription(showDesc) {
+  return {
+    type: "SHOW_DESCRIPTION",
+    payload: !showDesc
+  };
 }
 
-export function showDescription(showDesc){
-    return{
-        type: 'SHOW-DESCRIPTION',
-        payload: !showDesc
-    }
+export function addToAccepted(id, status) {
+  const request = axios
+    .put(`/api/recommendations/${id}/${status}`)
+    .then(response => response.data);
+
+  return {
+    type: "ADD_TO_ACCEPTED",
+    payload: request
+  };
+}
+
+export function addToRejected(id, status) {
+  const request = axios
+    .put(`/api/recommendations/${id}/${status}`)
+    .then(response => response.data);
+
+  return {
+    type: "ADD_TO_REJECTED",
+    payload: request
+  };
 }

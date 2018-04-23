@@ -1,0 +1,20 @@
+body {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  transform-origin: top left;
+
+  @media (min-width: 360px) {
+    transform: scale(1.1);
+  }
+  @media (min-width: 375px) {
+    transform: scale(1.2);
+  }
+  @media (min-width: 425px) {
+    transform: scale(1.35);
+  }
+  @media (min-width: 760px) {
+    transform: scale(1.7);
+  }
+}

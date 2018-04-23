@@ -10,6 +10,7 @@ class Home extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <Cards height="350" width="297" />

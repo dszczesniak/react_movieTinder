@@ -12,13 +12,19 @@ import {
 } from "../../actions";
 
 class Cards extends Component {
+  constructor(props){
+    super(props);
+    this.state = { 
+      count: 0
+    } 
+  }
+
   onCardSwipe = (card, like) => {
     let actualCard = this.props.cards.splice(card, 1);
     if (actualCard[0]) {
       this.props.cards.length === 1 ? this.loadmore() : null;
       this.setState({
-        cards: this.props.cards,
-        count: this.state ? this.state.count + 1 : 1
+        count: this.state.count + 1
       });
       like === true
         ? this.props.dispatch(addToAccepted(actualCard[0]._id, "accept"))
@@ -31,8 +37,7 @@ class Cards extends Component {
     if (actualCard[0]) {
       this.props.dispatch(addToAccepted(actualCard[0]._id, "accept"));
       this.setState({
-        cards: this.props.cards,
-        count: this.state ? this.state.count + 1 : 1
+        count: this.state.count + 1
       });
       this.props.showDesc ? this.showDesc() : null;
       this.props.cards.length === 1 ? this.loadmore() : null;
@@ -44,8 +49,7 @@ class Cards extends Component {
     if (actualCard[0]) {
       this.props.dispatch(addToRejected(actualCard[0]._id, "reject"));
       this.setState({
-        cards: this.props.cards,
-        count: this.state ? this.state.count + 1 : 1
+        count: this.state.count + 1
       });
       this.props.showDesc ? this.showDesc() : null;
       this.props.cards.length === 1 ? this.loadmore() : null;
@@ -92,7 +96,7 @@ class Cards extends Component {
 
   renderCardStack = () => {
     let cards = this.props.cards;
-    let cardsToShow = cards ? cards.slice(0, 1) : null;
+    let cardsToShow = cards.slice(0, 1);
 
     return cardsToShow.map((card, index) => (
       <div key={index}>
